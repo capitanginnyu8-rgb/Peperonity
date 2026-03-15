@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peperonity.com - Your Mobile World</title>
+<meta name="description" content="Peperonity - Tu mundo móvil. Chat, amigos, fotos, videos y blogs gratis.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Teko:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #1a1a1a;
+    --accent: #ff6600;
+    --accent2: #ff9900;
+    --accent3: #cc3300;
+    --text: #e0e0e0;
+    --text2: #aaaaaa;
+    --border: #2a2a2a;
+    --glow: 0 0 8px rgba(255,102,0,0.4);
+    --link: #ff9933;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 13px;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(255,80,0,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(255,60,0,0.04) 0%, transparent 60%);
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { color: var(--accent); text-shadow: var(--glow); }
+
+  /* ===== HEADER ===== */
+  #header {
+    background: linear-gradient(180deg, #1c0a00 0%, #0f0600 100%);
+    border-bottom: 2px solid var(--accent3);
+    padding: 10px 12px 8px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  }
+
+  .logo-wrap {
+    display: inline-block;
+    position: relative;
+  }
+  .logo-main {
+    font-family: 'Orbitron', monospace;
+    font-weight: 900;
+    font-size: 28px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #ff6600, #ffaa00, #ff3300);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 10px rgba(255,100,0,0.6));
+    animation: logoPulse 3s ease-in-out infinite;
+  }
+  .logo-dot {
+    font-family: 'Orbitron', monospace;
+    font-size: 20px;
+    color: var(--accent2);
+  }
+  .logo-tld {
+    font-family: 'Orbitron', monospace;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ccc;
+  }
+  @keyframes logoPulse {
+    0%, 100% { filter: drop-shadow(0 0 10px rgba(255,100,0,0.6)); }
+    50% { filter: drop-shadow(0 0 18px rgba(255,150,0,0.9)); }
+  }
+
+  .tagline {
+    font-family: 'Teko', sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: var(--text2);
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+
+  /* ===== NAV BAR ===== */
+  #topnav {
+    background: #0d0d0d;
+    border-bottom: 1px solid var(--border);
+    padding: 6px 12px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  #topnav a {
+    color: var(--text2);
+    font-size: 12px;
+    padding: 3px 10px;
+    border-right: 1px solid var(--border);
+    transition: all 0.2s;
+    letter-spacing: 1px;
+  }
+  #topnav a:last-child { border-right: none; }
+  #topnav a:hover {
+    color: var(--accent);
+    background: rgba(255,100,0,0.08);
+  }
+
+  /* ===== MAIN CONTAINER ===== */
+  #wrapper {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  /* ===== SEARCH ===== */
+  #searchbar {
+    padding: 10px 12px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+  }
+  #searchbar input {
+    flex: 1;
+    background: #0a0a0a;
+    border: 1px solid #333;
+    color: var(--text);
+    padding: 6px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border 0.2s;
+  }
+  #searchbar input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 6px rgba(255,100,0,0.2);
+  }
+  #searchbar button {
+    background: var(--accent3);
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    font-family: 'Teko', sans-serif;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  #searchbar button:hover { background: var(--accent); }
+
+  /* ===== MENU ITEMS ===== */
+  #mainmenu {
+    padding: 8px 0;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-bottom: 1px solid #151515;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .menu-item:hover {
+    background: rgba(255,100,0,0.07);
+    padding-left: 20px;
+    color: var(--accent2);
+  }
+  .menu-item:hover .menu-icon { color: var(--accent); }
+  .menu-icon {
+    font-size: 16px;
+    width: 22px;
+    text-align: center;
+    color: var(--accent3);
+    transition: color 0.15s;
+  }
+  .menu-label {
+    font-family: 'Teko', sans-serif;
+    font-size: 17px;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  .menu-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: #555;
+    background: #1a1a1a;
+    padding: 2px 6px;
+    border: 1px solid #2a2a2a;
+  }
+
+  /* ===== ONLINE USERS ===== */
+  #online-strip {
+    background: #0c0c0c;
+    border-bottom: 1px solid var(--border);
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #555;
+  }
+  .online-dot {
+    width: 6px; height: 6px;
+    background: #00cc44;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00cc44;
+    animation: blink 2s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+  .online-count { color: #00cc44; font-weight: bold; }
+
+  /* ===== CHAT SECTION ===== */
+  #chat-section {
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    background: linear-gradient(90deg, #1a0800, #0d0d0d);
+    border-bottom: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 7px 12px;
+    font-family: 'Teko', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #chatbox {
+    height: 220px;
+    overflow-y: auto;
+    padding: 8px 10px;
+    background: #080808;
+    font-size: 12px;
+    line-height: 1.8;
+    scrollbar-width: thin;
+    scrollbar-color: #333 #0a0a0a;
+  }
+  #chatbox::-webkit-scrollbar { width: 4px; }
+  #chatbox::-webkit-scrollbar-track { background: #0a0a0a; }
+  #chatbox::-webkit-scrollbar-thumb { background: #333; }
+
+  .chat-msg {
+    padding: 2px 0;
+    border-bottom: 1px solid #0f0f0f;
+    animation: msgIn 0.2s ease-out;
+  }
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateX(-5px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .chat-user {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .chat-user.mod { color: #ff3366; }
+  .chat-user.vip { color: #ffcc00; }
+  .chat-time { color: #333; font-size: 10px; margin-right: 4px; }
+  .chat-text { color: var(--text2); }
+
+  #chat-input-wrap {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  #chat-nick {
+    background: #0d0d0d;
+    border: none;
+    border-right: 1px solid var(--border);
+    color: var(--accent2);
+    padding: 8px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    width: 100px;
+    outline: none;
+  }
+  #chat-msg-input {
+    flex: 1;
+    background: #0d0d0d;
+    border: none;
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    outline: none;
+  }
+  #chat-send {
+    background: var(--accent3);
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    font-family: 'Teko', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: background 0.15s;
+  }
+  #chat-send:hover { background: var(--accent); }
+
+  /* ===== REGISTER BANNER ===== */
+  #register-banner {
+    background: linear-gradient(90deg, #1a0500, #0d0300);
+    border: 1px solid #3a1500;
+    margin: 10px 12px;
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text2);
+    position: relative;
+    overflow: hidden;
+  }
+  #register-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,100,0,0.05), transparent);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer {
+    to { left: 100%; }
+  }
+  #register-banner strong { color: var(--accent2); }
+  .reg-btn {
+    display: inline-block;
+    margin-top: 6px;
+    background: var(--accent3);
+    color: #fff !important;
+    padding: 5px 18px;
+    font-family: 'Teko', sans-serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    border: 1px solid var(--accent);
+  }
+  .reg-btn:hover {
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(255,100,0,0.4);
+  }
+
+  /* ===== SECTIONS GRID ===== */
+  #sections-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin: 0;
+    border-top: 1px solid var(--border);
+  }
+  .section-card {
+    background: var(--bg2);
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+    color: var(--text);
+    display: block;
+  }
+  .section-card:hover {
+    background: #1a0a00;
+    border-bottom-color: var(--accent);
+    color: var(--accent2);
+  }
+  .section-card .icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .section-card .label {
+    font-family: 'Teko', sans-serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .section-card .sublabel { font-size: 10px; color: #555; margin-top: 2px; }
+
+  /* ===== RECENT ACTIVITY ===== */
+  #activity {
+    padding: 0;
+    border-top: 1px solid var(--border);
+  }
+  .activity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 12px;
+    border-bottom: 1px solid #111;
+    font-size: 11px;
+    color: #666;
+    transition: background 0.15s;
+  }
+  .activity-item:hover { background: #111; color: #999; }
+  .activity-avatar {
+    width: 24px; height: 24px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #331100, #220a00);
+    border: 1px solid #3a1500;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--accent3);
+    flex-shrink: 0;
+  }
+  .activity-text { flex: 1; line-height: 1.4; }
+  .activity-text .uname { color: var(--link); }
+  .activity-time { color: #333; font-size: 10px; white-space: nowrap; }
+
+  /* ===== FOOTER ===== */
+  #footer {
+    background: #080808;
+    border-top: 1px solid var(--border);
+    padding: 12px;
+    text-align: center;
+    font-size: 10px;
+    color: #333;
+    line-height: 2;
+  }
+  #footer a { color: #444; }
+  #footer a:hover { color: var(--accent3); }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: var(--bg2);
+    border: 1px solid var(--accent3);
+    width: 90%; max-width: 360px;
+    box-shadow: 0 0 30px rgba(255,60,0,0.2);
+    animation: modalIn 0.2s ease-out;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-header {
+    background: linear-gradient(90deg, #1a0800, #0f0f0f);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Teko', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    color: var(--accent2);
+  }
+  .modal-close {
+    cursor: pointer;
+    color: #555;
+    font-size: 18px;
+    transition: color 0.15s;
+  }
+  .modal-close:hover { color: var(--accent); }
+  .modal-body { padding: 16px 14px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .form-group input {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    color: var(--text);
+    padding: 8px 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    outline: none;
+    transition: border 0.2s;
+  }
+  .form-group input:focus {
+    border-color: var(--accent3);
+    box-shadow: 0 0 6px rgba(255,60,0,0.15);
+  }
+  .form-submit {
+    width: 100%;
+    background: var(--accent3);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    font-family: 'Teko', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  .form-submit:hover { background: var(--accent); }
+  .modal-alt { text-align: center; margin-top: 10px; font-size: 11px; color: #555; }
+  .modal-alt a { color: var(--link); }
+</style>
+</head>
+<body>
+
+<div id="wrapper">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div class="logo-wrap">
+      <span class="logo-main">peperonity</span><span class="logo-dot">.</span><span class="logo-tld">com</span>
+    </div>
+    <div class="tagline">✦ your mobile world ✦</div>
+  </div>
+
+  <!-- TOP NAV -->
+  <div id="topnav">
+    <a href="#" onclick="openModal('join')">Unirse</a>
+    <a href="#" onclick="openModal('login')">Login</a>
+    <a href="#" onclick="toggleLang()">Idioma</a>
+    <a href="#" onclick="logoutUser()" id="auth-status" style="margin-left:auto"></a>
+  </div>
+
+  <!-- ONLINE STRIP -->
+  <div id="online-strip">
+    <span class="online-dot"></span>
+    <span><span class="online-count" id="online-num">247</span> usuarios online ahora</span>
+    <span style="margin-left:auto; color:#2a2a2a">▪ ▪ ▪</span>
+  </div>
+
+  <!-- SEARCH -->
+  <div id="searchbar">
+    <input type="text" id="search-input" placeholder="Buscar personas, fotos, blogs...">
+    <button onclick="doSearch()">BUSCAR</button>
+  </div>
+
+  <!-- MAIN MENU -->
+  <div id="mainmenu">
+    <a class="menu-item" href="#" onclick="showSection('friends')">
+      <span class="menu-icon">👥</span>
+      <span class="menu-label">Buscar Amigos</span>
+      <span class="menu-count">1.2k online</span>
+    </a>
+    <a class="menu-item" href="#" onclick="showSection('photos')">
+      <span class="menu-icon">📷</span>
+      <span class="menu-label">Fotos Geniales</span>
+      <span class="menu-count">48k fotos</span>
+    </a>
+    <a class="menu-item" href="#" onclick="showSection('videos')">
+      <span class="menu-icon">🎬</span>
+      <span class="menu-label">Videos Geniales</span>
+      <span class="menu-count">12k videos</span>
+    </a>
+    <a class="menu-item" href="#" onclick="showSection('sites')">
+      <span class="menu-icon">🌐</span>
+      <span class="menu-label">Sitios</span>
+      <span class="menu-count">3.4k sitios</span>
+    </a>
+    <a class="menu-item" href="#" onclick="showSection('blogs')">
+      <span class="menu-icon">✍️</span>
+      <span class="menu-label">Blogs</span>
+      <span class="menu-count">892 blogs</span>
+    </a>
+    <a class="menu-item" href="#" onclick="scrollToChat()">
+      <span class="menu-icon">💬</span>
+      <span class="menu-label">Chat Principal</span>
+      <span class="menu-count" style="color:#00cc44">VIVO</span>
+    </a>
+  </div>
+
+  <!-- REGISTER BANNER -->
+  <div id="register-banner">
+    <strong>Sitios, Blogs y Amigos</strong> — Únete a Peperonity<br>
+    <span style="font-size:11px">100% GRATIS para siempre</span><br>
+    <a href="#" class="reg-btn" onclick="openModal('join')">UNIRSE GRATIS</a>
+  </div>
+
+  <!-- CHAT SECTION -->
+  <div id="chat-section">
+    <div class="section-title">💬 CHAT PRINCIPAL</div>
+    <div id="chatbox">
+      <!-- Messages injected by JS -->
+    </div>
+    <div id="chat-input-wrap">
+      <input type="text" id="chat-nick" placeholder="Tu nick" maxlength="16">
+      <input type="text" id="chat-msg-input" placeholder="Escribe un mensaje..." maxlength="200" onkeydown="if(event.key==='Enter')sendMsg()">
+      <button id="chat-send" onclick="sendMsg()">ENVIAR</button>
+    </div>
+  </div>
+
+  <!-- SECTIONS GRID -->
+  <div id="sections-grid">
+    <a class="section-card" href="#" onclick="showSection('friends')">
+      <span class="icon">👥</span>
+      <span class="label">Amigos</span>
+      <span class="sublabel">Conoce gente nueva</span>
+    </a>
+    <a class="section-card" href="#" onclick="showSection('photos')">
+      <span class="icon">📷</span>
+      <span class="label">Fotos</span>
+      <span class="sublabel">Comparte tus fotos</span>
+    </a>
+    <a class="section-card" href="#" onclick="showSection('videos')">
+      <span class="icon">🎬</span>
+      <span class="label">Videos</span>
+      <span class="sublabel">Sube y mira videos</span>
+    </a>
+    <a class="section-card" href="#" onclick="showSection('blogs')">
+      <span class="icon">✍️</span>
+      <span class="label">Blogs</span>
+      <span class="sublabel">Escribe tu historia</span>
+    </a>
+  </div>
+
+  <!-- RECENT ACTIVITY -->
+  <div id="activity">
+    <div class="section-title">⚡ ACTIVIDAD RECIENTE</div>
+    <div id="activity-list">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer">
+    <a href="#">Inicio</a> · <a href="#" onclick="openModal('join')">Registro</a> · <a href="#">Ayuda</a> · <a href="#">Privacidad</a> · <a href="#">Contacto</a>
+    <br>© 2024 Peperonity.com — Tu Mundo Móvil
+    <br><span style="color:#1a1a1a">v2.0 · mobile edition</span>
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- JOIN MODAL -->
+<div class="modal-overlay" id="modal-join">
+  <div class="modal-box">
+    <div class="modal-header">
+      UNIRSE GRATIS
+      <span class="modal-close" onclick="closeModal('join')">✕</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Nick / Usuario</label>
+        <input type="text" id="reg-nick" placeholder="ej: pepero_user99">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="reg-email" placeholder="tu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="reg-pass" placeholder="••••••••">
+      </div>
+      <button class="form-submit" onclick="registerUser()">CREAR CUENTA</button>
+      <div class="modal-alt">¿Ya tienes cuenta? <a href="#" onclick="switchModal('join','login')">Iniciar sesión</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="modal-login">
+  <div class="modal-box">
+    <div class="modal-header">
+      INICIAR SESIÓN
+      <span class="modal-close" onclick="closeModal('login')">✕</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="tu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Contraseña</label>
+        <input type="password" id="login-pass" placeholder="••••••••">
+      </div>
+      <button class="form-submit" onclick="loginUser()">ENTRAR</button>
+      <div class="modal-alt">¿No tienes cuenta? <a href="#" onclick="switchModal('login','join')">Únete gratis</a></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script>
+
+// ===== FIREBASE CHAT =====
+const firebaseConfig = {
+  apiKey: "AIzaSyC4fbVsd9haRpZvHSKub312y6rDGmtRCjo",
+  authDomain: "peperonity-9fefa.firebaseapp.com",
+  databaseURL: "https://peperonity-9fefa-default-rtdb.firebaseio.com",
+  projectId: "peperonity-9fefa",
+  storageBucket: "peperonity-9fefa.firebasestorage.app",
+  messagingSenderId: "618330389846",
+  appId: "1:618330389846:web:92c79b834b6a17aa9d2af7",
+  measurementId: "G-8LYW2DBM66"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+const auth = firebase.auth();
+const chatRef = db.ref('chat');
+
+// ===== AUTH STATE =====
+let currentUser = null;
+auth.onAuthStateChanged(user => {
+  currentUser = user;
+  const el = document.getElementById('auth-status');
+  if(el) {
+    if(user) {
+      el.textContent = '👤 ' + (user.displayName || user.email);
+      el.style.color = '#ff9900';
+      const nickField = document.getElementById('chat-nick');
+      if(nickField) nickField.value = user.displayName || user.email;
+    } else {
+      el.textContent = '';
+    }
+  }
+});
+
+function registerUser() {
+  const nick = document.getElementById('reg-nick').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const pass = document.getElementById('reg-pass').value;
+  if(!nick || !email || !pass) { alert('Completa todos los campos'); return; }
+  auth.createUserWithEmailAndPassword(email, pass)
+    .then(cred => cred.user.updateProfile({ displayName: nick }))
+    .then(() => { alert('¡Bienvenido ' + nick + '! Cuenta creada.'); closeModal('join'); })
+    .catch(e => {
+      if(e.code === 'auth/email-already-in-use') alert('Ese email ya está registrado.');
+      else if(e.code === 'auth/weak-password') alert('La contraseña debe tener al menos 6 caracteres.');
+      else alert('Error: ' + e.message);
+    });
+}
+
+function loginUser() {
+  const email = document.getElementById('login-email').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  if(!email || !pass) { alert('Completa todos los campos'); return; }
+  auth.signInWithEmailAndPassword(email, pass)
+    .then(cred => { alert('¡Bienvenido ' + (cred.user.displayName || cred.user.email) + '!'); closeModal('login'); })
+    .catch(e => {
+      if(e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found') alert('Email o contraseña incorrectos.');
+      else alert('Error: ' + e.message);
+    });
+}
+
+function logoutUser() {
+  auth.signOut().then(() => alert('Sesión cerrada.'));
+}
+
+function timeNow() {
+  const d = new Date();
+  return String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+}
+
+function sanitize(str) {
+  return String(str).replace(/</g,'&lt;').replace(/>/g,'&gt;').substring(0, 200);
+}
+
+function renderMsg(msg) {
+  const box = document.getElementById('chatbox');
+  const div = document.createElement('div');
+  div.className = 'chat-msg';
+  div.innerHTML = `<span class="chat-time">${msg.time}</span><span class="chat-user ${msg.role||''}">${sanitize(msg.user)}:</span> <span class="chat-text">${sanitize(msg.text)}</span>`;
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+  while(box.children.length > 100) box.removeChild(box.firstChild);
+}
+
+function initChat() {
+  chatRef.limitToLast(50).on('child_added', (snapshot) => {
+    renderMsg(snapshot.val());
+  });
+}
+
+function sendMsg() {
+  const nick = currentUser ? (currentUser.displayName || currentUser.email) : (document.getElementById('chat-nick').value.trim() || 'Anon');
+  const txt = document.getElementById('chat-msg-input').value.trim();
+  if(!txt) return;
+  chatRef.push({ user: nick, text: txt, time: timeNow(), timestamp: Date.now() });
+  document.getElementById('chat-msg-input').value = '';
+  // Update nick field to show current user
+  if(currentUser) document.getElementById('chat-nick').value = nick;
+}
+
+// ===== ACTIVITY =====
+const activities = [
+  { icon: '📷', user: 'luna_star', action: 'subió 3 fotos nuevas', time: '2min' },
+  { icon: '✍️', user: 'darkwolf99', action: 'publicó un blog', time: '5min' },
+  { icon: '👥', user: 'marisolita', action: 'se unió a Peperonity', time: '8min' },
+  { icon: '🎬', user: 'TechBoy2000', action: 'subió un video', time: '12min' },
+  { icon: '💬', user: 'pepera_girl', action: 'envió 10 mensajes en el chat', time: '15min' },
+  { icon: '👥', user: 'xXslayer', action: 'agregó 2 nuevos amigos', time: '20min' },
+];
+
+function initActivity() {
+  const list = document.getElementById('activity-list');
+  activities.forEach(a => {
+    const div = document.createElement('div');
+    div.className = 'activity-item';
+    div.innerHTML = `
+      <div class="activity-avatar">${a.icon}</div>
+      <div class="activity-text"><span class="uname">${a.user}</span> ${a.action}</div>
+      <div class="activity-time">${a.time}</div>
+    `;
+    list.appendChild(div);
+  });
+}
+
+// ===== ONLINE COUNT =====
+function animateOnline() {
+  setInterval(() => {
+    const el = document.getElementById('online-num');
+    const base = 247;
+    const v = base + Math.floor((Math.random()-0.5)*20);
+    el.textContent = v;
+  }, 8000);
+}
+
+// ===== MODALS =====
+function openModal(name) {
+  document.getElementById('modal-' + name).classList.add('active');
+}
+function closeModal(name) {
+  document.getElementById('modal-' + name).classList.remove('active');
+}
+function switchModal(from, to) {
+  closeModal(from);
+  setTimeout(() => openModal(to), 150);
+}
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => {
+    if (e.target === m) m.classList.remove('active');
+  });
+});
+
+// ===== MISC =====
+function scrollToChat() {
+  document.getElementById('chat-section').scrollIntoView({ behavior: 'smooth' });
+}
+function doSearch() {
+  const v = document.getElementById('search-input').value.trim();
+  if (v) alert('Buscando: ' + v + '\n\n(Función disponible tras el registro)');
+}
+function showSection(s) {
+  if(!currentUser) { openModal('login'); return; }
+  if(s === 'photos') { openModal('photos'); return; }
+  if(s === 'videos') { openModal('videos'); return; }
+  const names = { friends:'Amigos', sites:'Sitios', blogs:'Blogs' };
+  alert('Sección: ' + (names[s]||s) + '\n\nPróximamente disponible.');
+}
+function toggleLang() {
+  alert('Idiomas: Español · English · Português\n\n(Selección de idioma próximamente)');
+}
+
+// ===== PHOTOS =====
+const photosRef = db.ref('photos');
+
+function uploadPhoto() {
+  const file = document.getElementById('photo-file').files[0];
+  const desc = document.getElementById('photo-desc').value.trim();
+  if(!file) { alert('Selecciona una foto primero'); return; }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const nick = currentUser.displayName || currentUser.email;
+    photosRef.push({
+      user: nick,
+      desc: desc || 'Sin descripción',
+      data: e.target.result,
+      time: timeNow(),
+      timestamp: Date.now()
+    }).then(() => {
+      alert('¡Foto subida!');
+      document.getElementById('photo-file').value = '';
+      document.getElementById('photo-desc').value = '';
+      loadPhotos();
+    });
+  };
+  reader.readAsDataURL(file);
+}
+
+function loadPhotos() {
+  const grid = document.getElementById('photos-grid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  photosRef.limitToLast(20).once('value', snap => {
+    const data = snap.val();
+    if(!data) { grid.innerHTML = '<p style="color:#555;font-size:11px">No hay fotos aún.</p>'; return; }
+    Object.values(data).reverse().forEach(p => {
+      const div = document.createElement('div');
+      div.style.cssText = 'background:#111;border:1px solid #2a2a2a;padding:4px;text-align:center';
+      div.innerHTML = '<img src="'+p.data+'" style="width:100%;max-height:100px;object-fit:cover"><div style="font-size:10px;color:#777;margin-top:3px">'+sanitize(p.user)+'</div>';
+      grid.appendChild(div);
+    });
+  });
+}
+
+// ===== VIDEOS =====
+const videosRef = db.ref('videos');
+
+function getYouTubeId(url) {
+  const match = url.match(/(?:v=|youtu\.be\/)([^&
+?#]+)/);
+  return match ? match[1] : null;
+}
+
+function shareVideo() {
+  const url = document.getElementById('video-url').value.trim();
+  const title = document.getElementById('video-title').value.trim();
+  if(!url) { alert('Pega el link del video'); return; }
+  const vid = getYouTubeId(url);
+  if(!vid) { alert('Link de YouTube inválido'); return; }
+  const nick = currentUser.displayName || currentUser.email;
+  videosRef.push({
+    user: nick,
+    title: title || 'Sin título',
+    videoId: vid,
+    time: timeNow(),
+    timestamp: Date.now()
+  }).then(() => {
+    alert('¡Video compartido!');
+    document.getElementById('video-url').value = '';
+    document.getElementById('video-title').value = '';
+    loadVideos();
+  });
+}
+
+function loadVideos() {
+  const list = document.getElementById('videos-list');
+  if(!list) return;
+  list.innerHTML = '';
+  videosRef.limitToLast(10).once('value', snap => {
+    const data = snap.val();
+    if(!data) { list.innerHTML = '<p style="color:#555;font-size:11px">No hay videos aún.</p>'; return; }
+    Object.values(data).reverse().forEach(v => {
+      const div = document.createElement('div');
+      div.style.cssText = 'margin-bottom:10px;background:#111;border:1px solid #2a2a2a;padding:8px';
+      div.innerHTML = '<iframe width="100%" height="150" src="https://www.youtube.com/embed/'+v.videoId+'" frameborder="0" allowfullscreen style="display:block"></iframe><div style="font-size:11px;color:#ff9900;margin-top:4px">'+sanitize(v.title)+'</div><div style="font-size:10px;color:#555">por '+sanitize(v.user)+'</div>';
+      list.appendChild(div);
+    });
+  });
+}
+
+// Load content when modals open
+const origOpenModal = openModal;
+function openModal(name) {
+  origOpenModal(name);
+  if(name === 'photos') loadPhotos();
+  if(name === 'videos') loadVideos();
+}
+
+// ===== INIT =====
+initChat();
+initActivity();
+animateOnline();
+</script>
+<!-- PHOTOS MODAL -->
+<div class="modal-overlay" id="modal-photos">
+  <div class="modal-box">
+    <div class="modal-header">
+      📷 FOTOS
+      <span class="modal-close" onclick="closeModal('photos')">✕</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Selecciona una foto</label>
+        <input type="file" id="photo-file" accept="image/*" style="color:#aaa;background:#0a0a0a;border:1px solid #333;padding:8px;width:100%">
+      </div>
+      <div class="form-group">
+        <label>Descripción (opcional)</label>
+        <input type="text" id="photo-desc" placeholder="Describe tu foto...">
+      </div>
+      <button class="form-submit" onclick="uploadPhoto()">SUBIR FOTO</button>
+      <div id="photos-grid" style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:6px"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VIDEOS MODAL -->
+<div class="modal-overlay" id="modal-videos">
+  <div class="modal-box">
+    <div class="modal-header">
+      🎬 VIDEOS
+      <span class="modal-close" onclick="closeModal('videos')">✕</span>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Link de YouTube</label>
+        <input type="text" id="video-url" placeholder="https://youtube.com/watch?v=...">
+      </div>
+      <div class="form-group">
+        <label>Título</label>
+        <input type="text" id="video-title" placeholder="Título del video">
+      </div>
+      <button class="form-submit" onclick="shareVideo()">COMPARTIR VIDEO</button>
+      <div id="videos-list" style="margin-top:12px"></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
